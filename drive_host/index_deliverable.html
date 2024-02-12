@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background: #ebebeb;
+        }
+
+        /*  */
+    </style>
+</head>
+
+<body>
+
+    <!-- Template Format -->
+    <div class="template-root">
+        <div class="page-subnav"></div>
+        <div class="two-column-page-content"></div>
+    </div>
+    <script>
+
+        const unitLineItemName = `Netflix_Avatar_Desktop_Takeover_Rain_Pre_Launch`;
+        // server path variable. 
+        const awServerPath = ``; //set empty for local path
+
+        // banner Wrapper element name
+        const gutterElement = `banner-item-gutter`;
+        const gutterTopElement = `banner-item-gutter-top`;
+
+        // click tag url
+        const listOfClickTag = { awClickTagURL1: '%%CLICK_URL_UNESC%%https://www.google.com/' }; //awClickTagURL1: "%%CLICK_URL_UNESC%%https://www.google.com/"
+        const clickTagDisableArea = `awClickTagDisable` //awClickTagDisable
+
+        // array of library script if needed
+        const arrayOfScripts = ['https://vjs.zencdn.net/8.5.2/video.min.js'];
+        // array of library script if needed
+        const arrayOfCssLinks = ['https://vjs.zencdn.net/8.5.2/video-js.css'];
+
+        // minified HTML with local path call
+        const htmlWithoutServerPathForGutter = `<div id="awGutterGlobalWrapper"><div id="awGutterWrapper"><div class="fogArea awClickTagURL1"><div class="fog fog1"></div></div><div class='awRainArea awClickTagURL1'><canvas id='rain-canvas'></canvas></div><div class='leftGutter awClickTagURL1'></div><div class='rightGutter awClickTagURL1'></div></div><div id="awGutterTopBnrWrapperBack"><div class='awGutterTopBnrCreativeContentBack'></div></div><div id='awSiteMiddleContentNavArea'></div><div id='awSiteMiddleContentArea'></div><div id='awSiteMiddleContentAreaFixed'></div></div>`;
+        const htmlWithoutServerPathForTopBnr = `<div id="awGutterTopBnrWrapperFront" class="awClickTagURL1"><div class='awGutterTopBnrCreativeContentFront'></div><div class='vedioContainer awClickTagDisable'><video id="aw-video" class="video-js" controls playsinline preload="auto" width="100%" height="100%" poster="poster.png" data-setup="{}"><source src="avatar_the_last_airbender.mp4" type="video/mp4" /><source src="avatar_the_last_airbender.webm" type="video/webm" /><p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5video</a></p></video></div></div>`;
+
+        // minified Css with local files call
+        const cssWithoutServerPath = `:root{--awThemeColor:#ebebeb}#awGutterGlobalWrapper{position:absolute;top:0;left:0;right:0;width:100%;height:1484px;overflow:hidden}#awGutterTopBnrWrapperBack{position:absolute;left:0;right:0;top:139px;width:100%;height:250px;margin:0 auto;margin-bottom:16px;margin-top:16px}#awGutterTopBnrWrapperBack .awGutterTopBnrCreativeContentBack{position:absolute;left:0;right:0;top:0;width:100%;height:250px;max-width:1008px;max-height:250px;margin:0 auto}#awGutterWrapper{z-index:0;position:fixed;top:0;width:100%;height:100vh;overflow:hidden;background:url(responsive_hero_wGutter_largeSkin.jpg) no-repeat center 0;background-attachment:scroll;max-width:2176px;max-height:1484px;left:0;right:0;margin:auto;cursor:pointer}#awGutterGlobalWrapper #awSiteMiddleContentNavArea{width:1008px;margin:0 auto;height:61px;background:var(--awThemeColor);position:absolute;right:0;left:0;top:0}#awGutterGlobalWrapper #awSiteMiddleContentArea{width:1008px;margin:0 auto;height:100vh;background:var(--awThemeColor);position:absolute;right:0;left:0;top:311px}#awGutterGlobalWrapper #awSiteMiddleContentAreaFixed{width:1008px;margin:0 auto;height:1484px;background:var(--awThemeColor);position:fixed;right:0;left:0;top:311px}#awGutterWrapper .leftGutter{position:absolute;top:0;width:calc(50vw - 504px);height:100%;right:50%;-webkit-transform:translateX(-504px);-ms-transform:translateX(-504px);transform:translateX(-504px);max-width:584px;max-height:1484px}#awGutterWrapper .rightGutter{position:absolute;top:0;width:calc(50vw - 504px);height:100%;left:50%;-webkit-transform:translateX(504px);-ms-transform:translateX(504px);transform:translateX(504px);max-width:584px;max-height:1484px}#awGutterTopBnrWrapperFront{position:relative;cursor:pointer}#awGutterTopBnrWrapperFront .awGutterTopBnrCreativeContentFront{position:sticky;left:0;right:0;width:100%;height:250px;margin:0 auto;margin-bottom:16px;margin-top:16px;background:url(responsive_hero_wGutter_top_content.png) no-repeat center 0}@media screen and (max-width:1610px){#awGutterWrapper{background:url(responsive_hero_wGutter_midSkin.jpg) no-repeat center 0}}@media screen and (max-width:1365px){#awGutterWrapper{background:url(responsive_hero_wGutter_smallSkin.jpg) no-repeat center 0}}@media screen and (max-width:1279px){}@media screen and (max-width:959px){#awGutterGlobalWrapper,#awGutterTopBnrWrapperFront{display:none}}#awGutterGlobalWrapper .awRainArea{position:absolute;height:auto;width:auto;text-align:center;z-index:0;color:#0000;width:100%;height:100%;top:0;left:0;right:0;margin:auto;max-width:2176px}.fogArea{position:absolute;text-align:center;z-index:0;color:black;width:2176px;height:1484px;top:0;left:50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);z-index:1;-webkit-animation:animFadeInFadeOut 5s both infinite ease-in-out;animation:animFadeInFadeOut 5s both infinite ease-in-out}.fog{position:absolute;height:1484px;width:2473px;background:url(fog1.png) no-repeat center;background-size:cover;left:0;top:0}@-webkit-keyframes animFadeInFadeOut{0%{opacity:.3}50%{opacity:0}100%{opacity:.3}}@keyframes animFadeInFadeOut{0%{opacity:.3}50%{opacity:0}100%{opacity:.3}}#awGutterTopBnrWrapperFront .vedioContainer{width:277px;height:156px;position:absolute;top:0;bottom:0;z-index:1;margin:auto 0;left:50%;-webkit-transform:translateX(-504px);-ms-transform:translateX(-504px);transform:translateX(-504px);border:2px solid #ffffff;border-radius:5px;-webkit-box-sizing:content-box;box-sizing:content-box;overflow:hidden}#awGutterTopBnrWrapperFront video{outline:0;display:block;-o-object-fit:contain;object-fit:contain;margin:auto;height:inherit;width:inherit}#awGutterTopBnrWrapperFront .aw-video-dimensions{width:inherit!important;height:inherit!important}#awGutterTopBnrWrapperFront .video-js{-webkit-box-shadow:none!important;box-shadow:none!important}#awGutterTopBnrWrapperFront .video-js .vjs-big-play-button{font-size:19px;height:30px;width:30px;top:auto!important;bottom:10px!important;left:39px!important;border:.06666em solid #ffffff}#awGutterTopBnrWrapperFront .vjs-button>.vjs-icon-placeholder:before,.video-js .vjs-big-play-button .vjs-icon-placeholder:before{color:#ffffff}#awGutterTopBnrWrapperFront .video-js .vjs-progress-control{color:#ffffff}#awGutterTopBnrWrapperFront .video-js .vjs-play-progress{background-color:#ffffff}#awGutterTopBnrWrapperFront .video-js .vjs-control-bar{height:3em}#awGutterTopBnrWrapperFront .vjs-poster img{-o-object-fit:cover;object-fit:cover}#awGutterTopBnrWrapperFront .video-js.vjs-layout-x-small .vjs-progress-control,#awGutterTopBnrWrapperFront .video-js.vjs-layout-tiny .vjs-progress-control{display:-webkit-box;display:-ms-flexbox;display:flex}#awGutterTopBnrWrapperFront .video-js.vjs-layout-x-small .vjs-custom-control-spacer{display:none}#awGutterTopBnrWrapperFront .video-js .vjs-time-control.vjs-current-time{display:block}#awGutterTopBnrWrapperFront .video-js .vjs-remaining-time{display:none!important}`;
+        const cssWithoutServerPathForDoubleNav = ``;
+
+        const manualImgLoader = []; // use this only when aw provide different server path
+
+        // ---------------------------------------------------------------------
+        // Please dont try to change the below code if you  are not a developer
+        // ---------------------------------------------------------------------
+        const awSiteCssOverRide = `.template-root .page-subnav{background:var(--awThemeColor)!important;width:100%;max-width:initial;position:relative;padding-bottom:0}.template-root .page-subnav:before{content:'';height:61px;width:100%;background:var(--awThemeColor);position:absolute;top:0;left:0}.template-root .two-column-page-content{background:var(--awThemeColor);position:relative;box-shadow:-24px -16px 0 0 var(--awThemeColor),24px 280px 0 0 var(--awThemeColor)}.neighbors-wrapper{position:relative;text-align:center}.template-root .page-subnav .secondary-nav{max-width:960px;margin:0 auto}.template-root .base-footer.is-en{position:relative}.template-root .breadcrumbs-wrapper{padding-left:0;position:relative}.template-root .content-module{position:relative}.two-column-page-content{background:var(--awThemeColor);position:relative}.template-root .base-footer.is-en .footer-legalese{margin-bottom:-20px}@media screen and (max-width:959px){.template-root .page-subnav{background:var(--awThemeColor)!important;padding:0 0 16px!important;margin-bottom:0!important;position:relative}}.template-root .breadcrumbs{position:relative}`
+        const awSiteCssOverRideForDoubleNav = `.template-root .page-subnav:before{content:'';height:96px !important;}`
+        // --scroll effect scripts ---
+        const getYPosition = () => {
+            let top = window.pageYOffset || parent.document.documentElement.scrollTop
+            return top;
+        }
+
+        const additionalScript = async () => {
+            // for video js
+            if (parent.videojs) {
+                // console.log('yes')
+                var player = parent.videojs('aw-video', {
+                    responsive: true
+                });
+            }
+            function makeItRain() {
+                const canvas = parent.document.querySelector("#rain-canvas");
+                canvas.width = 2176 + 400; // 400 more added for cross direction rain
+                canvas.height = 1484;
+
+                if (canvas.getContext) {
+                    var ctx = canvas.getContext("2d");
+                    var w = canvas.width;
+                    var h = canvas.height;
+                    ctx.strokeStyle = "rgba(255,255,255,0.35)";
+                    ctx.lineWidth = 1.5; // rain thickness control
+                    ctx.lineCap = "round";
+
+                    var init = [];
+                    var maxParts = 2500; // increase rain count
+                    for (var a = 0; a < maxParts; a++) {
+                        init.push({
+                            x: Math.random() * w,
+                            y: Math.random() * h,
+                            l: Math.random() * 1,
+                            xs: -2.5 - Math.random() * 2 - 2, // change - to + rain direction
+                            ys: Math.random() * 25 + 10,
+                        });
+                    }
+
+                    var particles = [];
+                    for (var b = 0; b < maxParts; b++) {
+                        particles[b] = init[b];
+                    }
+
+                    function draw() {
+                        ctx.clearRect(0, 0, w, h);
+                        for (var c = 0; c < particles.length; c++) {
+                            var p = particles[c];
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p.x + p.l * p.xs, p.y + p.l * p.ys);
+                            ctx.stroke();
+                        }
+                        move();
+                    }
+
+                    function move() {
+                        for (var b = 0; b < particles.length; b++) {
+                            var p = particles[b];
+                            p.x += p.xs;
+                            p.y += p.ys;
+                            if (p.x > w || p.y > h) {
+                                p.x = Math.random() * w;
+                                p.y = -20;
+                            }
+                        }
+                    }
+
+                    setInterval(draw, 15); // rain speed
+                }
+
+            }
+
+            makeItRain();
+            return true;
+
+        };
+
+        
+        // clickTag add method
+        const addClickTag = async () => {
+            // addclickTag
+            if (listOfClickTag) {
+                for (var key in listOfClickTag) {
+                    const clickTagElementList = await parent.document.querySelectorAll('.' + key);
+                    const applyClickTag = await clickTagElementList.forEach(clickTagElement => {
+                        const formatedClickTagURL = awServerPath ? listOfClickTag[key] : listOfClickTag[key].replaceAll('%%CLICK_URL_UNESC%%', '');
+                        clickTagElement.onclick = (e) => {
+                            e.stopPropagation();
+                            if (e.target.closest('.' + clickTagDisableArea)) {
+                                // console.log('sorry click tag disable')
+                            } else {
+                                window.open(formatedClickTagURL, '_blank');
+                            }
+                        };
+                    })
+                }
+
+            }
+        };
+
+        const setGutterPositionAfterInject = () => {
+            let isClassAvailable = parent.document.getElementsByClassName('basic-header');
+            let awSiteNav = parent.document.querySelector(".page-subnav");
+            let marginTopForGutter = isClassAvailable.length > 0 && isClassAvailable[0].offsetHeight;
+            // set margin from top of the AW site
+            if (isClassAvailable.length > 0 && awServerPath) {
+                // set the gutter position from top in the aw site
+                parent.document.getElementById("awGutterWrapper").style.top = marginTopForGutter + "px";
+                // set middle content are position from top in the aw site
+                parent.document.getElementById("awSiteMiddleContentArea").style.height = (parent.document.getElementsByClassName('two-column-page-content')[0].offsetHeight + 570) + "px"; // 311 add will be ok. due to take safe zone used instead of 570
+
+                // set aw back top gutter position
+                const getPageSubNAvHeight = window.getComputedStyle(parent.document.getElementsByClassName('page-subnav')[0], ':before').height;
+                parent.document.getElementById("awGutterTopBnrWrapperBack").style.top = `calc(${marginTopForGutter}px + ${getPageSubNAvHeight} - 16px)`
+
+                // check double nav
+                awSiteNav?.querySelector('.tertiary-nav') ? (parent.document.getElementById("awSiteMiddleContentArea").style.top = (marginTopForGutter + 346) + "px") :
+                    (parent.document.getElementById("awSiteMiddleContentArea").style.top = (marginTopForGutter + 311) + "px")
+                awSiteNav?.querySelector('.tertiary-nav') ? (parent.document.getElementById("awSiteMiddleContentAreaFixed").style.top = (marginTopForGutter + 346) + "px") :
+                    (parent.document.getElementById("awSiteMiddleContentAreaFixed").style.top = (marginTopForGutter + 311) + "px")
+            }
+            // update elements based on scroll
+            parent.window.addEventListener("scroll", (event) => {
+                // middle Area script
+                parent.document.getElementById("awSiteMiddleContentArea").style.top = (marginTopForGutter + 311) - getYPosition() + "px"
+                if (((marginTopForGutter + 311) - getYPosition()) <= 0) {
+                    parent.document.getElementById("awSiteMiddleContentArea").style.position = 'fixed';
+                    parent.document.getElementById("awSiteMiddleContentArea").style.top = '0px'
+                } else {
+                    parent.document.getElementById("awSiteMiddleContentArea").style.position = 'absolute';
+                    awSiteNav?.querySelector('.tertiary-nav') ? (parent.document.getElementById("awSiteMiddleContentArea").style.top = (marginTopForGutter + 150) + "px") :
+                        (parent.document.getElementById("awSiteMiddleContentArea").style.top = (marginTopForGutter + 311) + "px")
+                }
+
+            });
+        }
+
+        // multiple time animation loop handling function
+        const refreshBanner = async () => {
+            let container = await parent.document.getElementById(gutterElement);
+            let container2 = await parent.document.getElementById(gutterTopElement);
+            let content = await addServerPathToAssets(htmlWithoutServerPathForGutter);
+            let content2 = await addServerPathToAssets(htmlWithoutServerPathForTopBnr);
+            if ((container.innerHTML = content) && (container2.innerHTML = content2)) {
+                setGutterPositionAfterInject();
+                additionalScript();
+            }
+        };
+
+        const addServerPathToAssets = async (recievedString) => {
+            let formatedString = recievedString;
+            if (awServerPath && manualImgLoader.length === 0) {
+                formatedString = await formatedString.replaceAll(
+                    /[\w-]+\.(jpg|png|jpeg|gif|mp4|webm)/g,
+                    `${awServerPath}$&`
+                );
+                return formatedString;
+            } else {
+                return recievedString;
+            }
+        };
+
+        const formatAndInjectBanner = async () => {
+            const awWebsiteNav = parent.document.querySelector(".page-subnav");
+            const awBodyFirstChild = parent.document.querySelector("body div").firstChild;
+            const websiteHead = parent.document.head || parent.document.getElementsByTagName('head')[0];
+
+            // if no server path add this css
+            !awServerPath && (awWebsiteNav?.querySelector('.tertiary-nav') ? websiteHead.insertAdjacentHTML('afterend', `<style>*{ padding: 0; margin: 0;}body{background:var(--awThemeColor);}#awGutterTopBnrWrapperFront,#awGutterTopBnrWrapperBack{ top: 80px;}</style>`) : websiteHead.insertAdjacentHTML('afterend', `<style>*{ padding: 0; margin: 0;}body{background:var(--awThemeColor);}#awGutterTopBnrWrapperFront,#awGutterTopBnrWrapperBack{ top: 45px;}</style>`));
+
+            // css append/inject method
+            const injectCss = (formatedCss) => {
+                const bannerStyle = parent.document.createElement('style');
+                bannerStyle.type = 'text/css';
+                if (bannerStyle.styleSheet) {
+                    bannerStyle.styleSheet.cssText = formatedCss;
+                } else {
+                    bannerStyle.appendChild(parent.document.createTextNode(formatedCss));
+                }
+                return websiteHead.appendChild(bannerStyle);
+            }
+            // HTML append/inject method
+            const injectHTML = (formatedHTML, targetNode, elementName) => {
+                var ele = parent.document.createElement('awad');
+                ele.className = elementName;
+                ele.id = elementName;
+                ele.innerHTML = formatedHTML.trim();
+                return targetNode.parentNode.insertBefore(ele, targetNode.nextSibling);
+            }
+
+            // library scripts CDN inject/append method
+            const injectScriptLibrary = async (librarySrcs) => {
+                return new Promise(async (resolve, reject) => {
+                    let myPromise = (scriptSrc) => new Promise((resolve, reject) => {
+                        let scriptElement = parent.document.createElement("script");
+                        scriptElement.type = 'text/javascript';
+                        scriptElement.src = scriptSrc;
+                        websiteHead.appendChild(scriptElement)
+                        scriptElement.onload = function () {
+                            resolve(scriptSrc)
+                        }
+                    })
+
+                    for (let index = 0; index < librarySrcs.length; index++) {
+                        if (librarySrcs[index]) {
+                            let result = await myPromise(librarySrcs[index])
+                            if (result === librarySrcs[librarySrcs.length - 1]) {
+                                resolve(result)
+                            }
+                        } else {
+                            resolve()
+                        }
+
+                    }
+                })
+            };
+
+            // Css library CDN inject/append method
+            const injectCssLibrary = (linkRef) => {
+                return new Promise(async (resolve, reject) => {
+                    let cssLinkPromise = (linkRef) => new Promise((resolve, reject) => {
+                        let cssLinkElement = parent.document.createElement("link");
+                        cssLinkElement.rel = 'stylesheet';
+                        cssLinkElement.href = linkRef;
+                        websiteHead.appendChild(cssLinkElement)
+                        cssLinkElement.onload = function () {
+                            resolve(linkRef)
+                        }
+                    })
+
+                    for (let index = 0; index < linkRef.length; index++) {
+                        if (linkRef[index]) {
+                            let linkAppendResult = await cssLinkPromise(linkRef[index])
+                            if (linkAppendResult === linkRef[linkRef.length - 1]) {
+                                resolve(linkAppendResult)
+                            }
+                        } else {
+                            resolve()
+                        }
+
+                    }
+                })
+            };
+
+            const adjustColorAsperAWSite = () => {
+                let getColorFromAWSite = window.getComputedStyle(parent.document.body, null).getPropertyValue('background-color');
+                let cssVariableList = parent.document.querySelector(':root');
+                return cssVariableList.style.setProperty('--awThemeColor', getColorFromAWSite)
+            }
+
+            const replaceListOfImageByServerPath = async (listOfImages, recievedString) => {
+                // console.log(recievedString)
+                let formatedString = recievedString;
+                if (awServerPath && manualImgLoader.length === 0 && listOfImages.length > 0) {
+                    formatedString = await formatedString.replaceAll(/[\w-]+\.(jpg|png|jpeg|gif|mp4|webm)/g, `${awServerPath}$&`)
+                    return formatedString
+                } else {
+                    return recievedString
+                }
+            }
+
+            const formatImageList = (imagelistArray) => {
+                return [...new Set(imagelistArray)]
+            }
+
+
+            try {
+                const callInjectCssLibrary = arrayOfCssLinks.length > 0 && await injectCssLibrary(arrayOfCssLinks);
+                const callInjectScriptLibrary = arrayOfScripts.length > 0 && await injectScriptLibrary(arrayOfScripts);
+                // preparing loader images list
+                const doubleNavCssImageList = manualImgLoader.length < 1 && await cssWithoutServerPathForDoubleNav.match(/[\w-]+\.(jpg|png|jpeg|gif|mp4|webm)/g);
+                const defaultcssImageList = manualImgLoader.length < 1 && await cssWithoutServerPath.match(/[\w-]+\.(jpg|png|jpeg|gif|mp4|webm)/g);
+                const topContentHTMLImageList = manualImgLoader.length < 1 && await htmlWithoutServerPathForTopBnr.match(/[\w-]+\.(jpg|png|jpeg|gif|mp4|webm)/g);
+                const gutterHTMLImageList = manualImgLoader.length < 1 && await htmlWithoutServerPathForGutter.match(/[\w-]+\.(jpg|png|jpeg|gif|mp4|webm)/g);
+                const allImageArrayWithoutServerPath = manualImgLoader.length < 1 && await formatImageList([...new Set(doubleNavCssImageList), ...new Set(defaultcssImageList), ...new Set(topContentHTMLImageList), ...new Set(gutterHTMLImageList)]);
+                // format minified HTML with serverPath
+                const htmlWithServerPathForGutter = await replaceListOfImageByServerPath(allImageArrayWithoutServerPath, htmlWithoutServerPathForGutter);
+                const htmlWithServerPathForTopBnr = await replaceListOfImageByServerPath(allImageArrayWithoutServerPath, htmlWithoutServerPathForTopBnr);
+                // format minified CSS with serverPath
+                const cssWithServerPath = await replaceListOfImageByServerPath(allImageArrayWithoutServerPath, cssWithoutServerPath);
+                const cssWithServerPathForDoubleNav = awWebsiteNav?.querySelector('.tertiary-nav') && (await replaceListOfImageByServerPath(allImageArrayWithoutServerPath, cssWithoutServerPathForDoubleNav));
+                // inject CSS
+                const callInjectAwCssOverRide = awServerPath && await injectCss(awSiteCssOverRide)
+                const callInjectCss = await injectCss(cssWithServerPath)
+                const callInjectCssForDoubleNav = awWebsiteNav?.querySelector('.tertiary-nav') && await injectCss(cssWithServerPathForDoubleNav) && await injectCss(awSiteCssOverRideForDoubleNav)
+
+                // set css variable from aw site
+                const setCssVariableFromAWSite = await adjustColorAsperAWSite();
+
+                const awBannerImageArrayWithPath = manualImgLoader.length < 1 ? await allImageArrayWithoutServerPath?.map(image => awServerPath + image).filter(item => {
+                    return !item.includes('.mp4') && !item.includes('.webm')
+                }) : manualImgLoader;
+
+                // call image Loader and inject HTML
+                const loadImagesAndInjectHTML = await ((loaderImages) => {
+                    let uploadImagesCount = 0;
+                    return new Promise((resolve, reject) => {
+                        if (loaderImages.length > 0) {
+                            loaderImages.forEach((imgSrc) => {
+                                let newImgTag = parent.document.createElement('img');
+                                newImgTag.src = imgSrc;
+                                newImgTag.addEventListener('load', () => {
+                                    newImgTag.remove();
+                                    uploadImagesCount++;
+                                    if (loaderImages.length == uploadImagesCount) {
+                                        // HTML
+                                        resolve(injectHTML(htmlWithServerPathForGutter, awBodyFirstChild, gutterElement) && injectHTML(htmlWithServerPathForTopBnr, awWebsiteNav, gutterTopElement))
+                                    }
+                                });
+                            });
+                        } else {
+                            resolve(injectHTML(htmlWithServerPathForGutter, awBodyFirstChild, gutterElement) && injectHTML(htmlWithServerPathForTopBnr, awWebsiteNav, gutterTopElement))
+                        }
+
+                    })
+                })(awBannerImageArrayWithPath);
+
+                // call click Tag adder method
+                const callAddClickTag = await ((injectedHtml) => {
+                    // console.log(injectedHtml)
+                    return addClickTag()
+                })(loadImagesAndInjectHTML)
+
+                // call click Tag adder method
+                const loadAditionalScript = await additionalScript();
+
+                await (() => {
+
+                    // set local html title name not AW site
+                    !parent.document.title && (parent.document.title = unitLineItemName.replaceAll('_', ' '));
+
+                    setGutterPositionAfterInject();
+
+                    // AW site css adjust for the ad after our top banner in gutter
+                    let nextElementOfAWTopBanner = parent.document.getElementById('awGutterTopBnrWrapperFront').nextElementSibling;
+                    if (nextElementOfAWTopBanner?.classList.contains('glacier-ad') && awServerPath) {
+                        nextElementOfAWTopBanner.style.margin = 'auto';
+                        nextElementOfAWTopBanner.style.width = 'max-content';
+                        nextElementOfAWTopBanner.style.maxWidth = '1008px';
+                        nextElementOfAWTopBanner.style.background = 'var(--awThemeColor)';
+                    }
+                    // css adjust for the ad after two-column-page-content div bottom banner in gutter of AW site
+                    let twoPageContent = parent.document.querySelector(".two-column-page-content");
+                    let bottomBanner = twoPageContent?.nextElementSibling
+                    if (bottomBanner?.classList.contains('glacier-ad') && awServerPath) {
+                        bottomBanner.style.margin = 'auto';
+                        bottomBanner.style.width = 'max-content';
+                        bottomBanner.style.maxWidth = '1008px';
+                        bottomBanner.style.background = 'var(--awThemeColor)';
+                    }
+                    // monitor ad
+                    let awGutterAd = parent.document.querySelector(`#${gutterElement}`);
+                    let awGutterTopAd = parent.document.querySelector(`#${gutterTopElement}`);
+                    if (awGutterAd || awGutterTopAd) {
+                        let observer = new MutationObserver(function (mutations) {
+                            mutations.forEach(function (mutation) {
+                                if (mutation.type === "attributes") {
+                                    refreshBanner();
+                                }
+                            });
+                        });
+
+                        // configuration of the observer:
+                        let config = {
+                            attributes: true,
+                            childList: true,
+                            characterData: true,
+                        };
+
+                        // pass in the target node, as well as the observer options
+                        observer.observe(awGutterAd, config);
+                        observer.observe(awGutterTopAd, config);
+                        // monitor ad
+                    }
+                    // end
+                })()
+
+            } catch (error) {
+                console.log(error)
+            }
+        } // formatAndInjectBanner method end
+
+        // call inject banner method
+        formatAndInjectBanner();
+
+
+
+    </script>
+</body>
+
+</html>
